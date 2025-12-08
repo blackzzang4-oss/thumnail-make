@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="유튜브 영상의 썸네일을 쉽고 빠르게 추출하고 다운로드할 수 있는 무료 웹 도구입니다. 다양한 해상도의 썸네일을 지원합니다.">
+    <meta name="keywords" content="유튜브, 썸네일, 추출, 다운로드, YouTube, thumbnail, download">
+    <meta name="author" content="YouTube Thumbnail Extractor">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="유튜브 썸네일 추출기">
+    <meta property="og:description" content="유튜브 영상의 썸네일을 쉽고 빠르게 추출하고 다운로드하세요">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="유튜브 썸네일 추출기">
+    <meta property="twitter:description" content="유튜브 영상의 썸네일을 쉽고 빠르게 추출하고 다운로드하세요">
+    
+    <title>유튜브 썸네일 추출기 - 무료 썸네일 다운로드 도구</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🎬</div>
+            <h1>유튜브 썸네일 추출기</h1>
+            <p class="subtitle">유튜브 영상의 썸네일을 쉽고 빠르게 다운로드하세요</p>
+        </header>
+
+        <main>
+            <div class="main-card">
+                <div class="input-group">
+                    <label for="youtube-url">유튜브 영상 URL</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="youtube-url" 
+                            placeholder="https://www.youtube.com/watch?v=..." 
+                            autocomplete="off"
+                            aria-label="유튜브 영상 URL 입력"
+                        >
+                        <button class="btn btn-primary" id="extract-btn" aria-label="썸네일 추출">
+                            추출하기
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 로딩 스피너 -->
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>썸네일을 가져오는 중...</p>
+                </div>
+
+                <!-- 에러 메시지 -->
+                <div class="error-message" id="error-message">
+                    <strong>⚠️ 오류</strong>
+                    <p id="error-text"></p>
+                </div>
+
+                <!-- 썸네일 결과 -->
+                <div class="thumbnail-result" id="thumbnail-result">
+                    <div class="thumbnail-preview">
+                        <img id="thumbnail-image" src="" alt="유튜브 썸네일 미리보기">
+                    </div>
+
+                    <div class="thumbnail-info">
+                        <p><strong>비디오 ID:</strong> <span id="video-id"></span></p>
+                        <p><strong>상태:</strong> 썸네일을 성공적으로 가져왔습니다! ✅</p>
+                    </div>
+
+                    <div class="download-options">
+                        <a href="#" class="download-btn" id="download-maxres" download aria-label="최대 해상도 다운로드">
+                            <span>최대 해상도</span>
+                            <span class="quality">1280x720</span>
+                        </a>
+                        <a href="#" class="download-btn" id="download-hq" download aria-label="고화질 다운로드">
+                            <span>고화질</span>
+                            <span class="quality">480x360</span>
+                        </a>
+                        <a href="#" class="download-btn" id="download-mq" download aria-label="중간 화질 다운로드">
+                            <span>중간 화질</span>
+                            <span class="quality">320x180</span>
+                        </a>
+                        <a href="#" class="download-btn" id="download-sd" download aria-label="표준 화질 다운로드">
+                            <span>표준 화질</span>
+                            <span class="quality">640x480</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>💡 팁: 유튜브 영상 URL을 붙여넣고 추출하기 버튼을 클릭하세요</p>
+            <p style="margin-top: 0.5rem; opacity: 0.7;">Made with ❤️ for YouTube creators</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
