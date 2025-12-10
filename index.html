@@ -1,28 +1,48 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="유튜브 영상의 썸네일을 쉽고 빠르게 추출하고 다운로드할 수 있는 무료 웹 도구입니다. 다양한 해상도의 썸네일을 지원합니다.">
     <meta name="keywords" content="유튜브, 썸네일, 추출, 다운로드, YouTube, thumbnail, download">
     <meta name="author" content="YouTube Thumbnail Extractor">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="유튜브 썸네일 추출기">
     <meta property="og:description" content="유튜브 영상의 썸네일을 쉽고 빠르게 추출하고 다운로드하세요">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="유튜브 썸네일 추출기">
     <meta property="twitter:description" content="유튜브 영상의 썸네일을 쉽고 빠르게 추출하고 다운로드하세요">
-    
+
     <title>유튜브 썸네일 추출기 - 무료 썸네일 다운로드 도구</title>
-    
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
+        <!-- 위자드 진행 표시기 -->
+        <div class="wizard-progress">
+            <div class="wizard-step active">
+                <div class="step-number">1</div>
+                <div class="step-label">URL 입력</div>
+            </div>
+            <div class="wizard-line"></div>
+            <div class="wizard-step">
+                <div class="step-number">2</div>
+                <div class="step-label">썸네일 추출</div>
+            </div>
+            <div class="wizard-line"></div>
+            <div class="wizard-step">
+                <div class="step-number">3</div>
+                <div class="step-label">다운로드</div>
+            </div>
+        </div>
+
         <header>
             <div class="logo">🎬</div>
             <h1>유튜브 썸네일 추출기</h1>
@@ -34,13 +54,8 @@
                 <div class="input-group">
                     <label for="youtube-url">유튜브 영상 URL</label>
                     <div class="input-wrapper">
-                        <input 
-                            type="text" 
-                            id="youtube-url" 
-                            placeholder="https://www.youtube.com/watch?v=..." 
-                            autocomplete="off"
-                            aria-label="유튜브 영상 URL 입력"
-                        >
+                        <input type="text" id="youtube-url" placeholder="https://www.youtube.com/watch?v=..."
+                            autocomplete="off" aria-label="유튜브 영상 URL 입력">
                         <button class="btn btn-primary" id="extract-btn" aria-label="썸네일 추출">
                             추출하기
                         </button>
@@ -100,4 +115,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

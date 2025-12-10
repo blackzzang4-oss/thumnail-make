@@ -10,6 +10,10 @@ const thumbnailResult = document.getElementById('thumbnail-result');
 const thumbnailImage = document.getElementById('thumbnail-image');
 const videoIdSpan = document.getElementById('video-id');
 
+// 위자드 단계 요소
+const wizardSteps = document.querySelectorAll('.wizard-step');
+const wizardLines = document.querySelectorAll('.wizard-line');
+
 // 다운로드 버튼들
 const downloadMaxRes = document.getElementById('download-maxres');
 const downloadHQ = document.getElementById('download-hq');
@@ -45,6 +49,31 @@ function getThumbnailUrls(videoId) {
     };
 }
 
+// 위자드 단계 업데이트 함수
+function updateWizardStep(step) {
+    // 모든 단계 초기화
+    wizardSteps.forEach((s, index) => {
+        if (index < step) {
+            s.classList.add('completed');
+            s.classList.remove('active');
+        } else if (index === step) {
+            s.classList.add('active');
+            s.classList.remove('completed');
+        } else {
+            s.classList.remove('active', 'completed');
+        }
+    });
+
+    // 라인 업데이트
+    wizardLines.forEach((line, index) => {
+        if (index < step) {
+            line.classList.add('completed');
+        } else {
+            line.classList.remove('completed');
+        }
+    });
+}
+
 // 에러 메시지 표시 함수
 function showError(message) {
     errorText.textContent = message;
@@ -63,6 +92,7 @@ function showLoading() {
     loading.classList.add('show');
     hideError();
     thumbnailResult.classList.remove('show');
+    updateWizardStep(1); // 2단계: 썸네일 추출
 }
 
 // 로딩 숨기기 함수
@@ -83,6 +113,7 @@ function showThumbnail(videoId, thumbnailUrls) {
         setupDownloadButtons(videoId, thumbnailUrls);
         hideLoading();
         thumbnailResult.classList.add('show');
+        updateWizardStep(2); // 3단계: 다운로드
     };
     img.onerror = function () {
         // maxresdefault가 없으면 hqdefault 사용
@@ -91,6 +122,7 @@ function showThumbnail(videoId, thumbnailUrls) {
         setupDownloadButtons(videoId, thumbnailUrls);
         hideLoading();
         thumbnailResult.classList.add('show');
+        updateWizardStep(2); // 3단계: 다운로드
     };
     img.src = thumbnailUrls.maxres;
 }
@@ -184,8 +216,13 @@ urlInput.addEventListener('keypress', function (e) {
     }
 });
 
-// 입력 필드 포커스 시 에러 메시지 숨기기
-urlInput.addEventListener('focus', hideError);
+// 입력 필드 포커스 시 에러 메시지 숨기기 및 단계 초기화
+urlInput.addEventListener('focus', function () {
+    hideError();
+    if (!thumbnailResult.classList.contains('show')) {
+        updateWizardStep(0); // 1단계: URL 입력
+    }
+});
 
 // 페이지 로드 시 입력 필드에 포커스
 window.addEventListener('load', function () {
