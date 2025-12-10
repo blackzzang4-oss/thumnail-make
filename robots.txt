@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blackzzang4-oss.github.io/thumnail-make/sitemap.xml
